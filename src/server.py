@@ -4,7 +4,6 @@ import uvicorn
 #import of router api function
 from router.index_router import api_router
 
-
 app: FastAPI = FastAPI(redoc_url=None)
 
 app.title = 'Ecommerce Api'
