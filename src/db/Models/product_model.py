@@ -4,15 +4,16 @@ product_schema: dict = {
         'required': ['title','stock','price','category','images_products','brand'],
         'properties': {
             'title': {
-                'bsonType': 'string'
+                'bsonType': 'string',
+                'pattern': '^[A-Za-z0-9\s]{2,}$'
             },
             'stock':{
                 'bsonType': 'number',
-                'minimun': 5
+                'minimum': 5
             },
             'price':{
                 'bsonType': 'double',
-                'minimun': 5
+                'minimum': 1
             },
             'category': {
                 'bsonType': 'string',

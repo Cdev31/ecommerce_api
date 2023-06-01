@@ -1,13 +1,20 @@
-from pydantic import  BaseModel,Field
+from pydantic import  BaseModel,Field,validator
 from typing import List,Optional,Tuple
 
 class CreateProductSchema(BaseModel):
     title: str = Field()
-    stock: int = Field()
-    price: float = Field()
+    stock: int = Field(ge=5)
+    price: float = Field(ge=1)
+    category: str = Field()
     images_products: List[str] = Field()
     brand: str= Field()
 
+    @validator('price','stock',pre=True)
+    def validate_price(cls,value): 
+        if value == True or isinstance(value,str):
+            raise ValueError('price must be a int')
+        return value
+    
 class UpdateProductSchema(BaseModel):
     title: Optional[str] = Field()
     stock: Optional[int] = Field()
