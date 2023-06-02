@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
 #internal imports 
-from schemas.product_schema import change_dinamic_category,CreateProductSchema
+from schemas.product_schema import change_dinamic_category
 from utils.types import Categories
 
 async def validate_category(req:Request,call_next):

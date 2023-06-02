@@ -1,13 +1,14 @@
 from pydantic import  BaseModel,Field,validator
 from typing import List,Optional,Tuple
+from fastapi import Form,File,UploadFile
 
 class CreateProductSchema(BaseModel):
-    title: str = Field()
-    stock: int = Field(ge=5)
-    price: float = Field(ge=1)
-    category: str = Field()
-    images_products: List[str] = Field()
-    brand: str= Field()
+    title: str = Form()
+    stock: int = Form(ge=5)
+    price: float = Form(ge=1)
+    category: str = Form()
+    images_products: List[UploadFile] = File()
+    brand: str= Form()
 
     @validator('price','stock',pre=True)
     def validate_price(cls,value): 
@@ -27,23 +28,23 @@ class UpdateProductSchema(BaseModel):
 #informacion altern requerida dependiendo de la categoria
 
 class ElectronicProductSchema(CreateProductSchema):
-    ram: str = Field()
-    processor: str = Field()
-    screen_size: str = Field()
-    operative_system: str = Field()
-    model: str = Field()
+    ram: str = Form()
+    processor: str = Form()
+    screen_size: str = Form()
+    operative_system: str = Form()
+    model: str = Form()
 
 class CleaningProductSchema(CreateProductSchema):
-    expiration: str = Field()
-    range_age: Tuple[int,int] = Field()
-    indications: str = Field()
-    quantity: str = Field()
-    package_size: str = Field()
+    expiration: str = Form()
+    range_age: Tuple[int,int] = Form()
+    indications: str = Form()
+    quantity: str = Form()
+    package_size: str = Form()
 
 class PersonalCareProductSchema(CleaningProductSchema):
-    flavor: Optional[str] = Field()
-    smell: Optional[str] = Field()
-    item_shape: str = Field()
+    flavor: Optional[str] = Form()
+    smell: Optional[str] = Form()
+    item_shape: str = Form()
 
 
 class ClotheShoesProductSchema(CreateProductSchema):

@@ -14,3 +14,8 @@ class Categories(Enum):
         return list(Categories.__members__)   
     
     
+#User Types   
+class Roles(Enum):
+    Admin = 'Administrator'
+    Normal= 'Normal'
+    Customer = 'Customer' 

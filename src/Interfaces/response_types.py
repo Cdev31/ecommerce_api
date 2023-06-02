@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Generic,TypeVar,Dict
+from typing import Generic,TypeVar,Dict,List
 from enum import Enum
 
 #messages status
@@ -10,10 +10,11 @@ class StatusMessage(Enum):
     UPDATED = 'UPDATED'
     NOT_SUCCESSFUL = 'NOT SUCCESFUL'
 
-T= TypeVar('T',bound=Dict[str,str | list | dict])
+T= TypeVar('T',bound=Dict | List[dict] | bool)
 
 class IResponse(BaseModel,Generic[T]):
-    response: T
     message: str
     status: StatusMessage
+    response: T
+   
 
