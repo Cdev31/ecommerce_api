@@ -7,7 +7,7 @@ class CreateProductSchema(BaseModel):
     stock: int = Form(ge=5)
     price: float = Form(ge=1)
     category: str = Form()
-    images_products: List[UploadFile] = File()
+    images_products: List[str] = Field()
     brand: str= Form()
 
     @validator('price','stock',pre=True)
@@ -36,7 +36,7 @@ class ElectronicProductSchema(CreateProductSchema):
 
 class CleaningProductSchema(CreateProductSchema):
     expiration: str = Form()
-    range_age: Tuple[int,int] = Form()
+    range_age: str = Form()
     indications: str = Form()
     quantity: str = Form()
     package_size: str = Form()

@@ -13,7 +13,8 @@ def api_router(app):
     router = APIRouter(prefix='/api/v1')
     router.include_router(prefix='/User',router=router_user)
     router.include_router(prefix='/Product',router=router_product)
-    setup_middleware(app)
     router.include_router(prefix='/Auth',router=router_auth)
     router.include_router(prefix='/category',router=router_category)
     app.include_router(router)
+
+    setup_middleware(app)
