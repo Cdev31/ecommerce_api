@@ -17,7 +17,7 @@ async def validate_category(req:Request,call_next):
             new_product = {
                 'stock': int(str(product['stock'])),
                 'price': float(str(product['price'])),
-                'images_products': name_files_products(product.getlist('image'),req)
+                'images_products': name_files_products(product.getlist('image'))
             }
 
             for c in Categories.__str__():

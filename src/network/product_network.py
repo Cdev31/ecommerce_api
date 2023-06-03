@@ -1,4 +1,4 @@
-from fastapi import (responses,HTTPException)
+from fastapi import (responses,HTTPException,Request)
 from bson import errors
 from starlette import status
 
@@ -29,9 +29,11 @@ class NetworkProduct:
                     status= StatusMessage.SUCCESS
                     )
     
-    def create(self,body:dict): 
-        newProduct = product_service.create_product(body)
-        return newProduct
+    def create(self,body:dict,req:Request): 
+        for i,file in enumerate(body['images_products']):
+            body['images_products'][i] = f'http://192.168.0.23:3000/public/imgProducts/{file}'    
+        new_product = product_service.create_product(body)
+        return new_product
 
 
     def update(self,id:str,changes:dict):

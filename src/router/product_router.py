@@ -23,7 +23,7 @@ def find_product(id: str = Path()):
 @router.post('/',status_code=status.HTTP_201_CREATED)
 async def create_product(req:Request):
     product = ast.literal_eval(req.app.state.product)
-    response = product_network.create(product)
+    response = product_network.create(product,req)
     return response
   
 
