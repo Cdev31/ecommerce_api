@@ -29,7 +29,7 @@ class NetworkProduct:
                     status= StatusMessage.SUCCESS
                     )
     
-    def create(self,body:dict):
+    def create(self,body:dict): 
         newProduct = product_service.create_product(body)
         return newProduct
 

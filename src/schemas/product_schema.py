@@ -3,12 +3,12 @@ from typing import List,Optional,Tuple
 from fastapi import Form,File,UploadFile
 
 class CreateProductSchema(BaseModel):
-    title: str = Form()
-    stock: int = Form(ge=5)
-    price: float = Form(ge=1)
-    category: str = Form()
-    images_products: List[str] = Field()
-    brand: str= Form()
+    title: str 
+    stock: int 
+    price: float 
+    category: str 
+    images_products: List[str] 
+    brand: str
 
     @validator('price','stock',pre=True)
     def validate_price(cls,value): 
@@ -28,28 +28,28 @@ class UpdateProductSchema(BaseModel):
 #informacion altern requerida dependiendo de la categoria
 
 class ElectronicProductSchema(CreateProductSchema):
-    ram: str = Form()
-    processor: str = Form()
-    screen_size: str = Form()
-    operative_system: str = Form()
-    model: str = Form()
+    ram: str 
+    processor: str 
+    screen_size: str 
+    operative_system: str 
+    model: str 
 
 class CleaningProductSchema(CreateProductSchema):
-    expiration: str = Form()
-    range_age: str = Form()
-    indications: str = Form()
-    quantity: str = Form()
-    package_size: str = Form()
+    expiration: str 
+    range_age: str 
+    indications: str 
+    quantity: str 
+    package_size: str 
 
 class PersonalCareProductSchema(CleaningProductSchema):
-    flavor: Optional[str] = Form()
-    smell: Optional[str] = Form()
-    item_shape: str = Form()
+    flavor: Optional[str] 
+    smell: Optional[str] 
+    item_shape: str 
 
 
 class ClotheShoesProductSchema(CreateProductSchema):
-    size: str = Field()
-    gender: str = Field()
+    size: str 
+    gender: str 
 
 
 change_dinamic_category = {

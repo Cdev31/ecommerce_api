@@ -1,8 +1,8 @@
-from fastapi import UploadFile
+from fastapi import UploadFile,Request
 import datetime
 
 #convert filename
-def name_files_products(images:list[UploadFile]) -> list[str]:
+def name_files_products(images:list[UploadFile],req:Request) -> list[str]:
     names_files = []
     for i in images:
         i.filename = f'{datetime.datetime.now()}.{i.filename.split(".")[-1]}'  

@@ -10,6 +10,8 @@ from router.category_router import router as router_category
 from middleware.router_middlewares import setup_middleware
 
 def api_router(app):
+    setup_middleware(app)
+    
     router = APIRouter(prefix='/api/v1')
     router.include_router(prefix='/User',router=router_user)
     router.include_router(prefix='/Product',router=router_product)
@@ -17,4 +19,5 @@ def api_router(app):
     router.include_router(prefix='/category',router=router_category)
     app.include_router(router)
 
-    setup_middleware(app)
+    
+    
